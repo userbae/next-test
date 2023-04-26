@@ -1,8 +1,7 @@
 import { connectDB } from "@/util/database";
 
-export default async function Home() {
+export default async function List(요청, 응답) {
   const db = (await connectDB).db("forum");
   let result = await db.collection("post").find().toArray();
-
-  return <div>Apple forum에 온걸 환영합니다.</div>;
+  return 응답.status(200).json(result);
 }
